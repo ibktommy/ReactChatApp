@@ -1,6 +1,13 @@
 import React from "react";
+import { Routes, Route } from 'react-router-dom'
 function App() {
-	return <h1>React Chat App</h1>;
+	return (
+    <div className="container">
+      <Routes>
+        <Route></Route>
+      </Routes>
+    </div>
+  )
 }
 
 export default App;
