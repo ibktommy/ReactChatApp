@@ -16,7 +16,7 @@ const Home = () => {
 		if (username === "") {
 			alert("Enter Your Username to Proceed to Chat Room!");
 		} else {
-			navigate("/chat");
+			navigate(`/chat/${username}`);
 		}
 	};
 
