@@ -1,12 +1,10 @@
 import React from "react";
 import { useGlobalAppContext } from "../../context/context";
 import "./Chat.css";
+import { formatText } from "../../utilities/utils";
 
 const Chat = () => {
 	const { username, message, setMessage } = useGlobalAppContext();
-
-	// Captalize first letter of every word in username
-	let name = username[0].toUpperCase() + username.substring(1);
 
 	// Function to Handle Send-Message
 	const sendMessageHandler = () => {
@@ -22,10 +20,12 @@ const Chat = () => {
 		<main id="chat">
 			<div className="title">Chat Room</div>
 			<div className="chat-body">
-				<p className="welcome">{name}, Welcome to the chat room</p>
+				<p className="welcome">
+					{formatText(username)}, Welcome to the chat room
+				</p>
 				<article className="message">
 					<p className="user-message">Hello, hope you doing good?</p>
-					<p className="user-name">{name.slice(0, 6)}</p>
+					<p className="user-name">{formatText(username).slice(0, 6)}</p>
 				</article>
 			</div>
 			<div className="chat-actions">
