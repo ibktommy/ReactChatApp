@@ -18,6 +18,7 @@
 .home-form input {
   display: inline-block;
   margin: 1.5rem 0;
+  text-transform: capitalize;
 }
 
 .home-form input::placeholder {
