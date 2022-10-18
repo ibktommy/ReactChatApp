@@ -18,6 +18,10 @@ const Home = () => {
 		} else {
 			navigate(`/chat/${username}`);
 		}
+		localStorage.setItem(
+			"username",
+			JSON.stringify(username),
+		);
 	};
 
 	return (

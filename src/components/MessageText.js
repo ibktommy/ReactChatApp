@@ -1,13 +1,29 @@
 import React from "react";
+import { useGlobalAppContext } from "../context/context";
+import { formatText } from "../utilities/utils";
 
 const MessageText = () => {
-  const { username, message } = useGlobalAppContext();
-  
+	const { username, messageData } = useGlobalAppContext();
+
 	return (
-		<article className="message">
-			<p className="user-message">Hello, hope you doing good?</p>
-			<p className="user-name">{name.slice(0, 6)}</p>
-		</article>
+		<>
+			{messageData.length > 0
+				? messageData.map((item) => {
+						let { id, message } = item;
+
+						return (
+							<div key={id}>
+								<article className="message">
+									<p className="user-message">{message}</p>
+									<p className="user-name">
+										{formatText(username).slice(0, 6)}
+									</p>
+								</article>
+							</div>
+						);
+				  })
+				: null}
+		</>
 	);
 };
 

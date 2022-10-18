@@ -50,6 +50,9 @@ article .user-message {
   color: #fff;
   text-align: start;
   max-width: 20rem;
+  min-height: fit-content;
+  overflow-wrap: break-word;
+
 }
 
 article .user-name {

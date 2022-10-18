@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useGlobalAppContext } from "../../context/context";
 import "./Chat.css";
 import { formatText } from "../../utilities/utils";
+import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const { username, message, setMessage } = useGlobalAppContext();
+	const [message, setMessage] = useState("");
+	const { username,  messageData, setMessageData } =
+		useGlobalAppContext();
 
 	// Function to Handle Send-Message
-	const sendMessageHandler = () => {
+	const sendMessageHandler = (e) => {
 		if (message === "") {
 			alert("YOU CANT SEND AND EMPTY MESSAGE");
 		} else {
-			console.log(message);
+			const newMessage = {
+				id: new Date().getTime().toString(),
+				username: username,
+				message: message,
+			};
+			setMessageData([...messageData, newMessage]);
+			localStorage.setItem(
+				"chatData",
+				JSON.stringify([...messageData, newMessage]),
+			);
 		}
 		setMessage("");
 	};
@@ -23,10 +35,7 @@ const Chat = () => {
 				<p className="welcome">
 					{formatText(username)}, Welcome to the chat room
 				</p>
-				<article className="message">
-					<p className="user-message">Hello, hope you doing good?</p>
-					<p className="user-name">{formatText(username).slice(0, 6)}</p>
-				</article>
+				{messageData && <MessageText />}
 			</div>
 			<div className="chat-actions">
 				<input
@@ -35,7 +44,7 @@ const Chat = () => {
 					value={message}
 					onChange={(e) => setMessage(e.target.value)}
 				/>
-				<button type="submit" onClick={sendMessageHandler}>
+				<button type="submit" onClick={(e) => sendMessageHandler()}>
 					Send
 				</button>
 			</div>
