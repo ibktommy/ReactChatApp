@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  background: blueviolet;
+  background: rgb(37, 37, 37);
 }
 
 .container {
@@ -19,6 +19,6 @@ body {
   padding: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-height: 100vh;
 }
