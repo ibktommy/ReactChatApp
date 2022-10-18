@@ -1,0 +1,17 @@
+.error {
+  margin-top: 30rem;
+  text-align: center;
+}
+
+.error h1 {
+  margin-bottom: 1rem;
+  color: #fff;
+  font-size: 5rem;
+}
+
+.error-btn {
+  background: blueviolet;
+  color: #fff;
+  padding: 1.5rem 1rem;
+  border: 0;
+}

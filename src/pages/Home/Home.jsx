@@ -4,7 +4,8 @@ import { useGlobalAppContext } from "../../context/context";
 import "./Home.css";
 
 const Home = () => {
-	const { username, setUsername } = useGlobalAppContext();
+	const { username, setUsername} =
+		useGlobalAppContext();
 
 	// Navigate
 	const navigate = useNavigate();
@@ -18,10 +19,6 @@ const Home = () => {
 		} else {
 			navigate(`/chat/${username}`);
 		}
-		localStorage.setItem(
-			"username",
-			JSON.stringify(username),
-		);
 	};
 
 	return (

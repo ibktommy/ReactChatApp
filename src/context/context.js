@@ -1,30 +1,22 @@
 import React, { useContext, useState } from "react";
 
-  // Function to get ChatData from localStorage
-  const getLocalStorage = () => {
-    let chatStorage = localStorage.getItem('chatData')
-    if (chatStorage) {
-      return JSON.parse(chatStorage)
-    } else {
-      return []
-    }
-  }
-
-  // Function to get Username from localStorage
-  const getNameStorage = () => {
-    let nameStorage = localStorage.getItem('username')
-    if (nameStorage) {
-      return JSON.parse(nameStorage)
-    } else {
-      return ""
-    }
-  }
+// Function to get ChatData from localStorage
+// const getLocalStorage = () => {
+// 	let chatStorage = localStorage.getItem("chatData");
+// 	if (chatStorage) {
+// 		return JSON.parse(localStorage.getItem("chatData"));
+// 	} else {
+// 		return [];
+// 	}
+// };
 
 const AppContext = React.createContext();
 
 const AppContextProvider = ({ children }) => {
-	const [username, setUsername] = useState(getNameStorage);
-	const [messageData, setMessageData] = useState(getLocalStorage);
+	const [username, setUsername] = useState("");
+	const [messageData, setMessageData] = useState([]);
+
+
 
 	return (
 		<AppContext.Provider
@@ -38,7 +30,7 @@ const AppContextProvider = ({ children }) => {
 			{children}
 		</AppContext.Provider>
 	);
-};
+};;
 
 // Custom Context Hook
 export const useGlobalAppContext = () => {

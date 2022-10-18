@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useGlobalAppContext } from "../../context/context";
 import "./Chat.css";
 import { formatText } from "../../utilities/utils";
@@ -21,7 +21,7 @@ const Chat = () => {
 			};
 			setMessageData([...messageData, newMessage]);
 			localStorage.setItem(
-				"chatData",
+				`${username}`,
 				JSON.stringify([...messageData, newMessage]),
 			);
 		}
