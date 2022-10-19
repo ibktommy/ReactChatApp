@@ -4,9 +4,12 @@ const AppContext = React.createContext();
 
 const AppContextProvider = ({ children }) => {
 	const [currentPeople, setCurrentPeople] = useState([]);
+	const [messages, setMessages] = useState([]);
 
 	return (
-		<AppContext.Provider value={{ currentPeople, setCurrentPeople }}>
+		<AppContext.Provider
+			value={{ currentPeople, setCurrentPeople, messages, setMessages }}
+		>
 			{children}
 		</AppContext.Provider>
 	);

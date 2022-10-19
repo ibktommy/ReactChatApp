@@ -3,12 +3,22 @@ import "./MessageText.css";
 import { formatText } from "../utilities/utils";
 
 const MessageText = () => {
+	const userMessages = JSON.parse(localStorage.getItem("messages"));
+
 	return (
 		<div>
-			<article className="message">
-				<p className="user-message">Hello there</p>
-				<p className="user-name">{formatText("Atom").slice(0, 6)}</p>
-			</article>
+			{userMessages &&
+				userMessages.map((messageItem) => {
+					let { id, user, message } = messageItem;
+					return (
+						<div key={id}>
+							<article className="message">
+								<p className="user-message">{message}</p>
+								<p className="user-name">{formatText(user).slice(0, 6)}</p>
+							</article>
+						</div>
+					);
+				})}
 		</div>
 	);
 };

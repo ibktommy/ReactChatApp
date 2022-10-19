@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import "./Chat.css";
-import formatText from "../../utilities/utils";
+import { formatText } from "../../utilities/utils";
 import { useGlobalAppContext } from "../../context/context";
 import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const { currentPeople } = useGlobalAppContext();
-
-	console.log(currentPeople);
+	const { messages, setMessages } = useGlobalAppContext();
 
 	let currentUserData = JSON.parse(localStorage.getItem("users"));
 
-	const { user } = currentUserData;
+	const { user, id } = currentUserData;
 
 	const [message, setMessage] = useState([]);
 
@@ -21,6 +19,19 @@ const Chat = () => {
 
 		if (message === "") {
 			alert("PLEASE ENTER YOUR MESSAGE!");
+		} else {
+			const newMessage = {
+				id: new Date().getTime().toString(),
+				user,
+				message,
+			};
+
+			setMessages([...messages, newMessage]);
+			localStorage.setItem(
+				"messages",
+				JSON.stringify([...messages, newMessage]),
+			);
+			setMessage("");
 		}
 	};
 
@@ -29,8 +40,8 @@ const Chat = () => {
 			<div className="title">Chat Room</div>
 
 			<div className="chat-body">
-				<p className="welcome">Atomdev, Welcome to the chat room</p>
-				{user && <MessageText />}
+				<p className="welcome">{formatText(user)}, Welcome to the chat room</p>
+				{user && messages && <MessageText />}
 			</div>
 
 			<form className="chat-actions" onSubmit={getMessage}>
