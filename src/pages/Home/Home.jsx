@@ -21,8 +21,9 @@ const Home = () => {
 			id: new Date().getTime().toString(),
 			user: user,
 		};
+
 		setCurrentPeople([...currentPeople, newUser]);
-		localStorage.setItem("users", JSON.stringify([...currentPeople, newUser]));
+		localStorage.setItem("users", JSON.stringify(newUser));
 		navigate("/chat");
 	};
 
