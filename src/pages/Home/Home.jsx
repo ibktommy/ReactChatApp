@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useGlobalAppContext } from "../../context/context";
 import "./Home.css";
 
 const Home = () => {
 	const [user, setUser] = useState("");
+	const { currentPeople, setCurrentPeople } = useGlobalAppContext();
 
 	const navigate = useNavigate();
 
@@ -15,7 +17,12 @@ const Home = () => {
 			alert("PLEASE ENTER YOUR USERNAME");
 		}
 
-		localStorage.setItem("user", JSON.stringify(user));
+		const newUser = {
+			id: new Date().getTime().toString(),
+			user: user,
+		};
+		setCurrentPeople([...currentPeople, newUser]);
+		localStorage.setItem("users", JSON.stringify([...currentPeople, newUser]));
 		navigate("/chat");
 	};
 

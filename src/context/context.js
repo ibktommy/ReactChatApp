@@ -1,9 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 const AppContext = React.createContext();
 
 const AppContextProvider = ({ children }) => {
-	return <AppContext.Provider value={"Hello"}>{children}</AppContext.Provider>;
+	const [currentPeople, setCurrentPeople] = useState([]);
+
+	return (
+		<AppContext.Provider value={{ currentPeople, setCurrentPeople }}>
+			{children}
+		</AppContext.Provider>
+	);
 };
 
 // Custom Context Hook
