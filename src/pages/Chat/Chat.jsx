@@ -2,7 +2,7 @@ import React from "react";
 import "./Chat.css";
 
 const Chat = () => {
-	return <div>Chat</div>;
+	return <h1>Chat Room</h1>;
 };
 
 export default Chat;
