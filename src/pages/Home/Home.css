@@ -1,0 +1,44 @@
+#home {
+  margin-top: 20rem;
+  max-width: 80rem;
+  padding: 1.5rem;
+}
+
+#home h1 {
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+}
+
+.home-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-form input {
+  display: inline-block;
+  margin: 1.5rem 0;
+  text-transform: capitalize;
+}
+
+.home-form input::placeholder {
+  font-size: 1.5rem;
+}
+
+.home-form input,
+.home-form button {
+  padding: 1.3rem;
+  outline-color: #ddd;
+}
+
+.home-form button {
+  background: blueviolet;
+  color: #fff;
+  font-size: 1.5rem;
+  border: 0;
+}
+
+.home-form button:hover {
+  background: purple;
+  transition: .4s;
+}

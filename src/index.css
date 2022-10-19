@@ -8,3 +8,25 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 62.5%;
 }
+
+body {
+  background: rgb(37, 37, 37);
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
