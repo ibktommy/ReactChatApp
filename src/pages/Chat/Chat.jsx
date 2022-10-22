@@ -9,7 +9,7 @@ const Chat = () => {
 
 	let currentUserData = JSON.parse(localStorage.getItem("users"));
 
-	const { user, id } = currentUserData;
+	const { user, id } = currentUserData[0];
 
 	const [message, setMessage] = useState([]);
 
