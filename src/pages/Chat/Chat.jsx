@@ -14,10 +14,6 @@ const Chat = () => {
 		setMessages,
 	} = useGlobalAppContext();
 
-	// let currentUserData = JSON.parse(localStorage.getItem("users"));
-
-	// const { user } = currentUser;
-
 	const [message, setMessage] = useState([]);
 
 	// Function To Get User Message
@@ -26,17 +22,30 @@ const Chat = () => {
 
 		if (message === "") {
 			alert("PLEASE ENTER YOUR MESSAGE!");
-		} else {
-			const newMessage = {
-				id: currentUserID,
-				user: currentUser,
-				message,
-			};
+			return;
+		}
 
-			setMessages([...messages, newMessage]);
+		const usersMessages = localStorage.getItem("UsersMessages");
+
+		const userMessageData = JSON.parse(usersMessages);
+
+		let newUserMessage = {
+			id: currentUserID,
+			user: currentUser,
+			message: message,
+		};
+
+		if (!userMessageData) {
+			localStorage.setItem("UsersMessages", JSON.stringify([newUserMessage]));
+			setMessage("");
+			return;
+		}
+
+		if (userMessageData) {
+			let newMessage = JSON.parse(usersMessages);
 			localStorage.setItem(
-				"messages",
-				JSON.stringify([...messages, newMessage]),
+				"UsersMessages",
+				JSON.stringify([...newMessage, newUserMessage]),
 			);
 			setMessage("");
 		}
@@ -64,6 +73,6 @@ const Chat = () => {
 			</form>
 		</main>
 	);
-};;
+};;;
 
 export default Chat;
