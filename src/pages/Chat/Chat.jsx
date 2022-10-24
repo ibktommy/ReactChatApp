@@ -14,7 +14,7 @@ const Chat = () => {
 		setMessages,
 	} = useGlobalAppContext();
 
-	let currentUserData = JSON.parse(localStorage.getItem("users"));
+	// let currentUserData = JSON.parse(localStorage.getItem("users"));
 
 	// const { user } = currentUser;
 
@@ -28,7 +28,7 @@ const Chat = () => {
 			alert("PLEASE ENTER YOUR MESSAGE!");
 		} else {
 			const newMessage = {
-				id: new Date().getTime().toString(),
+				id: currentUserID,
 				user: currentUser,
 				message,
 			};
