@@ -25,7 +25,7 @@ const Chat = () => {
 			return;
 		}
 
-		const usersMessages = localStorage.getItem("UsersMessages");
+		const usersMessages = localStorage.getItem("usersMessages");
 
 		const userMessageData = JSON.parse(usersMessages);
 
@@ -36,7 +36,7 @@ const Chat = () => {
 		};
 
 		if (!userMessageData) {
-			localStorage.setItem("UsersMessages", JSON.stringify([newUserMessage]));
+			localStorage.setItem("usersMessages", JSON.stringify([newUserMessage]));
 			setMessage("");
 			return;
 		}
@@ -44,7 +44,7 @@ const Chat = () => {
 		if (userMessageData) {
 			let newMessage = JSON.parse(usersMessages);
 			localStorage.setItem(
-				"UsersMessages",
+				"usersMessages",
 				JSON.stringify([...newMessage, newUserMessage]),
 			);
 			setMessage("");
