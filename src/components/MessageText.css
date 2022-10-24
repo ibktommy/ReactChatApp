@@ -6,7 +6,7 @@ article {
   margin-bottom: 1rem;
 }
 
-article .user-message {
+.user-message {
   background: blueviolet;
   margin-right: .8rem;
   font-size: 1.5rem;
@@ -20,8 +20,34 @@ article .user-message {
 
 }
 
-article .user-name {
+.user-name {
   color: #303030;
   font-size: 1.3rem;
   font-style: italic;
+}
+
+.other-message {
+  background: lightgray;
+  margin-right: .8rem;
+  font-size: 1.5rem;
+  padding: .5rem 1.5rem;
+  border-radius: 1.5rem;
+  color: #000;
+  text-align: start;
+  max-width: 20rem;
+  min-height: fit-content;
+  overflow-wrap: break-word;
+}
+
+other-message-text {
+  background: rgb(71, 80, 79);
+  color: #303030;
+  margin-right: .8rem;
+  font-size: 1.5rem;
+  padding: .5rem 1.5rem;
+  border-radius: 1.5rem;
+  text-align: start;
+  max-width: 20rem;
+  min-height: fit-content;
+  overflow-wrap: break-word;
 }

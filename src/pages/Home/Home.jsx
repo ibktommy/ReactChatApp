@@ -5,7 +5,8 @@ import "./Home.css";
 
 const Home = () => {
 	const [user, setUser] = useState("");
-	const { currentPeople, setCurrentPeople } = useGlobalAppContext();
+	const { currentUser, setCurrentUser, currentUserID, setCurrentUserID } =
+		useGlobalAppContext();
 
 	const navigate = useNavigate();
 
@@ -15,16 +16,33 @@ const Home = () => {
 
 		if (user === "") {
 			alert("PLEASE ENTER YOUR USERNAME");
+			return;
 		}
 
-		const newUser = {
+		const usersData = localStorage.getItem("users");
+
+		const userData = JSON.parse(usersData);
+
+		let newUser = {
 			id: new Date().getTime().toString(),
-			user: user,
+			user: user.toLowerCase(),
 		};
 
-		setCurrentPeople([...currentPeople, newUser]);
-		localStorage.setItem("users", JSON.stringify(newUser));
-		navigate("/chat");
+		if (!userData) {
+			setCurrentUser(user);
+			setCurrentUserID(newUser.id);
+			localStorage.setItem("users", JSON.stringify([newUser]));
+			navigate("/chat");
+			return;
+		}
+
+		if (userData) {
+			let newUserData = JSON.parse(usersData);
+			localStorage.setItem("users", JSON.stringify([...newUserData, newUser]));
+			setCurrentUser(user);
+			setCurrentUserID(newUser.id);
+			navigate("/chat");
+		}
 	};
 
 	return (
@@ -35,7 +53,7 @@ const Home = () => {
 				<input
 					type="text"
 					placeholder="Enter Your Username"
-					value={user}
+					value={user.toLowerCase()}
 					onChange={(e) => setUser(e.target.value)}
 				/>
 				<button type="submit">Join Chat</button>

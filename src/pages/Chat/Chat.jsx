@@ -5,11 +5,14 @@ import { useGlobalAppContext } from "../../context/context";
 import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const { messages, setMessages } = useGlobalAppContext();
-
-	let currentUserData = JSON.parse(localStorage.getItem("users"));
-
-	const { user, id } = currentUserData;
+	const {
+		currentUser,
+		setCurrentUser,
+		currentUserID,
+		setCurrentUserID,
+		messages,
+		setMessages,
+	} = useGlobalAppContext();
 
 	const [message, setMessage] = useState([]);
 
@@ -19,17 +22,30 @@ const Chat = () => {
 
 		if (message === "") {
 			alert("PLEASE ENTER YOUR MESSAGE!");
-		} else {
-			const newMessage = {
-				id: new Date().getTime().toString(),
-				user,
-				message,
-			};
+			return;
+		}
 
-			setMessages([...messages, newMessage]);
+		const usersMessages = localStorage.getItem("usersMessages");
+
+		const userMessageData = JSON.parse(usersMessages);
+
+		let newUserMessage = {
+			id: currentUserID,
+			user: currentUser,
+			message: message,
+		};
+
+		if (!userMessageData) {
+			localStorage.setItem("usersMessages", JSON.stringify([newUserMessage]));
+			setMessage("");
+			return;
+		}
+
+		if (userMessageData) {
+			let newMessage = JSON.parse(usersMessages);
 			localStorage.setItem(
-				"messages",
-				JSON.stringify([...messages, newMessage]),
+				"usersMessages",
+				JSON.stringify([...newMessage, newUserMessage]),
 			);
 			setMessage("");
 		}
@@ -40,8 +56,10 @@ const Chat = () => {
 			<div className="title">Chat Room</div>
 
 			<div className="chat-body">
-				<p className="welcome">{formatText(user)}, Welcome to the chat room</p>
-				{user && messages && <MessageText />}
+				<p className="welcome">
+					{formatText(currentUser)}, Welcome to the chat room
+				</p>
+				{currentUser && messages && <MessageText />}
 			</div>
 
 			<form className="chat-actions" onSubmit={getMessage}>
@@ -55,6 +73,6 @@ const Chat = () => {
 			</form>
 		</main>
 	);
-};
+};;;
 
 export default Chat;
