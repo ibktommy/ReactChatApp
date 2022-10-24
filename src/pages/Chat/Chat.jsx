@@ -5,11 +5,18 @@ import { useGlobalAppContext } from "../../context/context";
 import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const { messages, setMessages } = useGlobalAppContext();
+	const {
+		currentUser,
+		setCurrentUser,
+		currentUserID,
+		setCurrentUserID,
+		messages,
+		setMessages,
+	} = useGlobalAppContext();
 
 	let currentUserData = JSON.parse(localStorage.getItem("users"));
 
-	const { user, id } = currentUserData[0];
+	// const { user } = currentUser;
 
 	const [message, setMessage] = useState([]);
 
@@ -22,7 +29,7 @@ const Chat = () => {
 		} else {
 			const newMessage = {
 				id: new Date().getTime().toString(),
-				user,
+				user: currentUser,
 				message,
 			};
 
@@ -40,8 +47,10 @@ const Chat = () => {
 			<div className="title">Chat Room</div>
 
 			<div className="chat-body">
-				<p className="welcome">{formatText(user)}, Welcome to the chat room</p>
-				{user && messages && <MessageText />}
+				<p className="welcome">
+					{formatText(currentUser)}, Welcome to the chat room
+				</p>
+				{currentUser && messages && <MessageText />}
 			</div>
 
 			<form className="chat-actions" onSubmit={getMessage}>
@@ -55,6 +64,6 @@ const Chat = () => {
 			</form>
 		</main>
 	);
-};
+};;
 
 export default Chat;

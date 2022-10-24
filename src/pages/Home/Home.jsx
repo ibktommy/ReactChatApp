@@ -5,22 +5,10 @@ import "./Home.css";
 
 const Home = () => {
 	const [user, setUser] = useState("");
-	const { currentPeople, setCurrentPeople } = useGlobalAppContext();
+	const { currentUser, setCurrentUser, currentUserID, setCurrentUserID } =
+		useGlobalAppContext();
 
 	const navigate = useNavigate();
-
-	// Function To Get Another User
-	// const getOtherUser = (user) => {
-	// 	let userData = JSON.parse(localStorage.getItem("users"));
-
-	// 	userData.forEach((oldUser) => {
-	// 		let username = oldUser.user;
-
-	// 		if (username === user) {
-	// 			alert("USERNAME IS TAKEN, PLEASE INPUT A NEW ONE!");
-	// 		}
-	// 	});
-	// };
 
 	// Function to login User to the ChatRoom
 	const loginUser = (e) => {
@@ -35,25 +23,25 @@ const Home = () => {
 
 		const userData = JSON.parse(usersData);
 
-		if (!userData) {
-			const newUser = {
-				id: new Date().getTime().toString(),
-				user: user,
-			};
+		let newUser = {
+			id: new Date().getTime().toString(),
+			user: user.toLowerCase(),
+		};
 
-			// setCurrentPeople([...currentPeople, newUser]);
+		if (!userData) {
+			setCurrentUser(user);
+			setCurrentUserID(newUser.id);
 			localStorage.setItem("users", JSON.stringify([newUser]));
 			navigate("/chat");
-		} else {
-			userData.forEach((prevUser) => {
-				let prevUsername = prevUser.user;
+			return;
+		}
 
-				if (prevUsername === user) {
-					alert("USERNAME IS TAKEN, PLEASE INPUT A NEW ONE!");
-					setUser("");
-					return;
-				}
-			});
+		if (userData) {
+			let newUserData = JSON.parse(usersData);
+			localStorage.setItem("users", JSON.stringify([...newUserData, newUser]));
+			setCurrentUser(user);
+			setCurrentUserID(newUser.id);
+			navigate("/chat");
 		}
 	};
 
@@ -65,7 +53,7 @@ const Home = () => {
 				<input
 					type="text"
 					placeholder="Enter Your Username"
-					value={user}
+					value={user.toLowerCase()}
 					onChange={(e) => setUser(e.target.value)}
 				/>
 				<button type="submit">Join Chat</button>
@@ -75,25 +63,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// userData.forEach((oldUser) => {
-// 	let username = oldUser.user;
-
-// 	if (username || username === user) {
-// 		alert("USERNAME IS TAKEN, PLEASE INPUT A NEW ONE!");
-// 	}
-// 	setUser("");
-// 	return;
-// });
-
-// else if (prevUsername !== user) {
-// 					const newUser = {
-// 						id: new Date().getTime().toString(),
-// 						user: user,
-// 					};
-// 					// setCurrentPeople([...currentPeople, newUser]);
-// 					let newlyUser = JSON.parse(usersData);
-// 					newlyUser.push(newUser);
-// 					localStorage.setItem("users", JSON.stringify(newlyUser));
-// 				}
-// 				return;

@@ -3,12 +3,20 @@ import React, { useContext, useState } from "react";
 const AppContext = React.createContext();
 
 const AppContextProvider = ({ children }) => {
-	const [currentPeople, setCurrentPeople] = useState([]);
+	const [currentUser, setCurrentUser] = useState("");
+	const [currentUserID, setCurrentUserID] = useState("");
 	const [messages, setMessages] = useState([]);
 
 	return (
 		<AppContext.Provider
-			value={{ currentPeople, setCurrentPeople, messages, setMessages }}
+			value={{
+				currentUser,
+				setCurrentUser,
+				messages,
+				setMessages,
+				currentUserID,
+				setCurrentUserID,
+			}}
 		>
 			{children}
 		</AppContext.Provider>
