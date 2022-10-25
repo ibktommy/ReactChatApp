@@ -9,8 +9,8 @@ const MessageText = () => {
 	const userMessages = JSON.parse(localStorage.getItem("usersMessages"));
 
 	return (
-		<div>
-			<div>
+		<div className="message-text">
+			<div className="mainUser">
 				<div>
 					{userMessages &&
 						userMessages
@@ -33,7 +33,7 @@ const MessageText = () => {
 				</div>
 			</div>
 
-			<div>
+			<div className="otherUser">
 				<div>
 					{userMessages &&
 						userMessages
@@ -60,23 +60,4 @@ const MessageText = () => {
 };
 
 export default MessageText;
-
-{
-	/* {userMessages &&
-				userMessages
-					.filter((item) => {
-						return item.id !== currentUserID;
-					})
-					.map((item) => {
-						let { id, user, message } = item;
-						return (
-							<div key={id}>
-								<article>
-									<p className="other-message-text">{message}</p>
-									<p className="user-name">{formatText(user).slice(0, 6)}</p>
-								</article>
-							</div>
-						);
-					})} */
-}
 
