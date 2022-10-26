@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Chat.css";
 import { formatText } from "../../utilities/utils";
 import { useGlobalAppContext } from "../../context/context";
@@ -44,7 +44,7 @@ const Chat = () => {
 			);
 			setMessage("");
 		}
-	};;
+	};
 
 	return (
 		<main id="chat">

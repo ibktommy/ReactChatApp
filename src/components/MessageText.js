@@ -4,8 +4,9 @@ import { formatText } from "../utilities/utils";
 import { useGlobalAppContext } from "../context/context";
 
 const MessageText = () => {
-	const { currentUserID, currentUser } = useGlobalAppContext();
+	const { currentUserID } = useGlobalAppContext();
 
+	// Fetch Users Messages from localStorage
 	const userMessages = JSON.parse(localStorage.getItem("usersMessages"));
 
 	return (
@@ -42,7 +43,6 @@ const MessageText = () => {
 				})}
 		</>
 	);
-};
+};;
 
 export default MessageText;
-
