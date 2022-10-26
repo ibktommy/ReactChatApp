@@ -9,74 +9,40 @@ const MessageText = () => {
 	const userMessages = JSON.parse(localStorage.getItem("usersMessages"));
 
 	return (
-		<div>
-			<div>
-				<div>
-					{userMessages &&
-						userMessages
-							.filter((item) => {
-								return item.id === currentUserID;
-							})
-							.map((item) => {
-								let { user, message, index } = item;
-								return (
-									<div key={index}>
-										<article className="userTexts">
-											<p className="user-message">{message}</p>
-											<p className="user-name">
-												{formatText(user).slice(0, 6)}
-											</p>
-										</article>
-									</div>
-								);
-							})}
-				</div>
-			</div>
+		<>
+			{userMessages &&
+				userMessages.map((messageItem) => {
+					let { id, user, message } = messageItem;
 
-			<div>
-				<div>
-					{userMessages &&
-						userMessages
-							.filter((item) => {
-								return item.id !== currentUserID;
-							})
-							.map((item) => {
-								let { user, message, index } = item;
-								return (
-									<div key={index}>
-										<article className="otherTexts">
-											<p className="other-message">{message}</p>
-											<p className="user-name">
-												{formatText(user).slice(0, 6)}
-											</p>
-										</article>
-									</div>
-								);
-							})}
-				</div>
-			</div>
-		</div>
+					if (id === currentUserID) {
+						return (
+							<div className="box">
+								<div className="sent">
+									<span className="main-msg">{message}</span>
+									<span className="username">
+										{formatText(user).slice(0, 6)}
+									</span>
+								</div>
+								<div className="receive"></div>
+							</div>
+						);
+					} else {
+						return (
+							<div className="box">
+								<div className="sent"></div>
+								<div className="receive">
+									<span className="other-msg">{message}</span>
+									<span className="username">
+										{formatText(user).slice(0, 6)}
+									</span>
+								</div>
+							</div>
+						);
+					}
+				})}
+		</>
 	);
 };
 
 export default MessageText;
-
-{
-	/* {userMessages &&
-				userMessages
-					.filter((item) => {
-						return item.id !== currentUserID;
-					})
-					.map((item) => {
-						let { id, user, message } = item;
-						return (
-							<div key={id}>
-								<article>
-									<p className="other-message-text">{message}</p>
-									<p className="user-name">{formatText(user).slice(0, 6)}</p>
-								</article>
-							</div>
-						);
-					})} */
-}
 
