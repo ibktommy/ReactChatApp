@@ -1,15 +1,105 @@
-.message-text {
+.box {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: .5rem;
+  padding: .5rem;
+}
+
+.sent {
+  align-self: flex-start;
+}
+
+.sent span {
+  display: inline-block;
+}
+
+.main-msg {
+  background: blueviolet;
+  margin-right: .6rem;
+  font-size: 1.5rem;
+  padding: .5rem 1.5rem;
+  margin-bottom: .8rem;
+  border-radius: 1rem;
+  color: #fff;
+  text-align: start;
+  max-width: 20rem;
+  min-height: fit-content;
+  overflow-wrap: break-word;
+}
+
+.username {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+  font-style: italic;
+  opacity: .5;
+}
+
+.receive {
+  align-self: flex-end;
+}
+
+.receive span {
+  display: inline-block;
+}
+
+.other-msg {
+  background: #000;
+  margin-right: .6rem;
+  font-size: 1.5rem;
+  padding: .5rem 1.5rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  color: #fff;
+  text-align: start;
+  max-width: 20rem;
+  min-height: fit-content;
+  overflow-wrap: break-word;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .message-text {
   display: flex;
   flex-direction: column;
 }
 
-/* .mainUser {
+.mainUser {
   align-content: left;
 }
 
 .otherUser {
   align-content: right;
-} */
+}
 
 article {
   width: fit-content;
@@ -63,4 +153,4 @@ other-message-text {
   max-width: 20rem;
   min-height: fit-content;
   overflow-wrap: break-word;
-}
+} */
