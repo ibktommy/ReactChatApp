@@ -11,12 +11,12 @@ const MessageText = () => {
 	return (
 		<>
 			{userMessages &&
-				userMessages.map((messageItem) => {
+				userMessages.map((messageItem, index) => {
 					let { id, user, message } = messageItem;
 
 					if (id === currentUserID) {
 						return (
-							<div className="box">
+							<div className="box" key={index}>
 								<div className="sent">
 									<span className="main-msg">{message}</span>
 									<span className="username">
@@ -28,7 +28,7 @@ const MessageText = () => {
 						);
 					} else {
 						return (
-							<div className="box">
+							<div className="box" key={index}>
 								<div className="sent"></div>
 								<div className="receive">
 									<span className="other-msg">{message}</span>

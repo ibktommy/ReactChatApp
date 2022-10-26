@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Chat.css";
 import { formatText } from "../../utilities/utils";
 import { useGlobalAppContext } from "../../context/context";
 import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const { currentUser, currentUserID, messages } = useGlobalAppContext();
+	const { currentUser, currentUserID } = useGlobalAppContext();
 
-	const [message, setMessage] = useState([]);
+	const [message, setMessage] = useState("");
 
 	// Function To Get User Message
 	const getMessage = (e) => {
@@ -18,23 +18,25 @@ const Chat = () => {
 			return;
 		}
 
+		//Setting Variable to get Data from localStorage
 		const usersMessages = localStorage.getItem("usersMessages");
+		const usersMessagesData = JSON.parse(usersMessages);
 
-		const userMessageData = JSON.parse(usersMessages);
-
+		// Setting Variable to Get User Message
 		let newUserMessage = {
 			id: currentUserID,
 			user: currentUser,
 			message: message,
 		};
 
-		if (!userMessageData) {
+		// Creating Message Data in localStorage if it does not exist therein
+		if (!usersMessagesData) {
 			localStorage.setItem("usersMessages", JSON.stringify([newUserMessage]));
 			setMessage("");
-			return;
 		}
 
-		if (userMessageData) {
+		// Updating Message Data in localStorage if Data initially exists
+		if (usersMessagesData) {
 			let newMessage = JSON.parse(usersMessages);
 			localStorage.setItem(
 				"usersMessages",
@@ -42,7 +44,7 @@ const Chat = () => {
 			);
 			setMessage("");
 		}
-	};
+	};;
 
 	return (
 		<main id="chat">
@@ -52,7 +54,7 @@ const Chat = () => {
 				<p className="welcome">
 					{formatText(currentUser)}, Welcome to the chat room
 				</p>
-				{currentUser && messages && <MessageText />}
+				{currentUser && <MessageText />}
 			</div>
 
 			<form className="chat-actions" onSubmit={getMessage}>
@@ -66,6 +68,6 @@ const Chat = () => {
 			</form>
 		</main>
 	);
-};;;
+};
 
 export default Chat;
