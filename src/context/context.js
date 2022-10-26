@@ -5,15 +5,12 @@ const AppContext = React.createContext();
 const AppContextProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState("");
 	const [currentUserID, setCurrentUserID] = useState("");
-	const [messages, setMessages] = useState([]);
 
 	return (
 		<AppContext.Provider
 			value={{
 				currentUser,
 				setCurrentUser,
-				messages,
-				setMessages,
 				currentUserID,
 				setCurrentUserID,
 			}}
