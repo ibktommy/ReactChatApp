@@ -5,14 +5,7 @@ import { useGlobalAppContext } from "../../context/context";
 import MessageText from "../../components/MessageText";
 
 const Chat = () => {
-	const {
-		currentUser,
-		setCurrentUser,
-		currentUserID,
-		setCurrentUserID,
-		messages,
-		setMessages,
-	} = useGlobalAppContext();
+	const { currentUser, currentUserID, messages } = useGlobalAppContext();
 
 	const [message, setMessage] = useState([]);
 
